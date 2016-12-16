@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>DevBridge Squares</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="Custom.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://unpkg.com/angular-ui-router@0.3.2/release/angular-ui-router.min.js"></script>
+	<!--<meta charset="utf-8" />-->
+    <script src="app/app.module.js"></script>
+    <script src="app/Controllers/ListsCtrl.js"></script>
+    <script src="app/Controllers/PointsCtrl.js"></script>
+    <script src="app/Controllers/Squares.js"></script>
+    <script src="app/Services/PointsListsService.js"></script>
+    <script src="app/Services/PointsService.js"></script>
+    <script src="app/Modals/ListCreation/ListCreation.js"></script>
+    <script src="app/Modals/ListDeletion/ListDeletion.js"></script>
+    <script src="app/Directives/CustomValidation/CustomValidation.js"></script>
+    <script src="app/Directives/FieldsValidation/FieldsValidation.js"></script>
+    <script src="app/Directives/FileUpload/FileUpload.js"></script>
+</head>
+<body ng-app="squaresApp">
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="main-menu">
+                <ul class="nav navbar-nav" id="main-menu-left">
+                    <li><a ui-sref="home">Devbridge Squares</a></li>
+                    <li><a ui-sref="lists">Points lists</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div ui-view></div>
+    </div>
+</body>
+</html>

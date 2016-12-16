@@ -1,0 +1,42 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading main-color">
+        <span class="font-color"><b>{{::Ctrl.pointsList.name}}</b> points list squares</span>
+        <span class="pull-right">
+            <select ng-init="Ctrl.itemsPerPage = Ctrl.itemsPerPageSelections[1]" ng-model="Ctrl.itemsPerPage" ng-options="option for option in Ctrl.itemsPerPageSelections" ng-change="Ctrl.changePaging(Ctrl.itemsPerPage)"></select>
+        </span>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th colspan="4" ng-if="Ctrl.errorMessages"><custom-validation errors="Ctrl.errorMessages"></custom-validation></th>
+                </tr>
+                <tr>
+                    <th>Point A</th>
+                    <th>Point B</th>
+                    <th>Point C</th>
+                    <th>Point D</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-if="!Ctrl.squares.length">
+                    <td colspan="4" class="text-center alert alert-info"><span>There are no squares!</span></td>
+                </tr>
+                <tr ng-repeat="square in Ctrl.squares">
+                    <td>({{::square.pointA.x}};{{::square.pointA.y}})</td>
+                    <td>({{::square.pointB.x}};{{::square.pointB.y}})</td>
+                    <td>({{::square.pointC.x}};{{::square.pointC.y}})</td>
+                    <td>({{::square.pointD.x}};{{::square.pointD.y}})</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="points text-center" ng-if="Ctrl.squares.length && Ctrl.pagingParameters.totalPages > 1">
+            <ul uib-pagination total-items="Ctrl.pagingParameters.totalItems"
+                items-per-page="Ctrl.pagingParameters.pageSize"
+                num-pages="Ctrl.pagingParameters.endPage"
+                ng-model="Ctrl.pagingParameters.currentPage"
+                ng-change="Ctrl.pageChanged()"
+                boundary-links="true"></ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading main-color">
+        <span class="font-color"><b>{{::Ctrl.pointsList.name}}</b> points list</span>
+        <span class="pull-right">
+            <select ng-init="Ctrl.itemsPerPage = Ctrl.itemsPerPageSelections[1]" ng-model="Ctrl.itemsPerPage" ng-options="option for option in Ctrl.itemsPerPageSelections" ng-change="Ctrl.changePaging(Ctrl.itemsPerPage)">
+            </select>
+            <label>
+                <input  class="not-displaying" type="file" fileread="Ctrl.file" />
+                <i class="glyphicon glyphicon-upload buttons-padding green-color" uib-tooltip="Upload list" role="button" aria-hidden="true"></i>
+            </label>
+            <i class="glyphicon glyphicon-download-alt buttons-padding orange-color" uib-tooltip="Download list" role="button" aria-hidden="true" ng-click="Ctrl.downloadList();"></i>
+            <i class="glyphicon glyphicon-erase buttons-padding orange-color" uib-tooltip="Clear list" role="button" aria-hidden="true" ng-click="Ctrl.clearList();"></i>
+            <i class="glyphicon glyphicon-play-circle buttons-padding orange-color" uib-tooltip="Calculate squares" role="button" aria-hidden="true" ui-sref="lists.squares({id: Ctrl.pointsList.id})"></i>
+        </span>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th colspan="3" ng-if="Ctrl.errorMessages"><custom-validation errors="Ctrl.errorMessages"></custom-validation></th>
+                </tr>
+                <tr>
+                    <th role="button" ng-click="Ctrl.sortChanged('x');">X <span class="glyphicon glyphicon-arrow-up" ng-class="Ctrl.sortType == 'x' && !Ctrl.sortReverse ? 'hidden' : 'visible'"></span><span ng-class="Ctrl.sortType == 'x' && Ctrl.sortReverse ? 'hidden' : 'visible'" class="glyphicon glyphicon-arrow-down"></span></th>
+                    <th role="button" ng-click="Ctrl.sortChanged('y');">Y <span class="glyphicon glyphicon-arrow-up" ng-class="Ctrl.sortType == 'y' && !Ctrl.sortReverse ? 'hidden' : 'visible'"></span><span ng-class="Ctrl.sortType == 'y' && Ctrl.sortReverse ? 'hidden' : 'visible'" class="glyphicon glyphicon-arrow-down"></span></th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="number" ng-model="Ctrl.newPoint.x" placeholder="New point X" /></td>
+                    <td><input type="number" ng-model="Ctrl.newPoint.y" placeholder="New point Y" /></td>
+                    <td><i uib-tooltip="Add point" role="button" class="glyphicon glyphicon-plus green-color" ng-click="Ctrl.addPoint()"></i></td>
+                </tr>
+                <tr ng-if="!Ctrl.points.length">
+                    <td colspan="3" class="text-center alert alert-info"><span>There are no points yet! Add some!</span></td>
+                </tr>
+                <tr ng-repeat="point in Ctrl.points">
+                    <td>{{::point.x}}</td>
+                    <td>{{::point.y}}</td>
+                    <td>
+                        <i class="glyphicon glyphicon-remove red-color" uib-tooltip="Remove point" role="button" aria-hidden="true" ng-click="Ctrl.deletePoint(point)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="points text-center" ng-if="Ctrl.points.length && Ctrl.pagingParameters.totalPages > 1">
+            <ul uib-pagination total-items="Ctrl.pagingParameters.totalItems"
+                items-per-page="Ctrl.pagingParameters.pageSize"
+                num-pages="Ctrl.pagingParameters.endPage"
+                ng-model="Ctrl.pagingParameters.currentPage"
+                ng-change="Ctrl.pageChanged()"
+                boundary-links="true"></ul>
+        </div>
+    </div>
+</div>

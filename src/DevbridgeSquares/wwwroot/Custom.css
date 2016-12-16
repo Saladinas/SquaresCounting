@@ -1,0 +1,42 @@
+ul.pagination li.active a {
+    background: #222;
+    color: #9d9d9d;
+    border: 1px solid #9d9d9d;
+}
+
+ul.pagination li:not(.active) a {
+    color: #222;
+}
+
+ul.pagination li a:hover:not(.active) {
+    background: #9d9d9d;
+    border: 1px solid #222;
+}
+
+.red-color {
+    color: red;
+}
+
+.green-color {
+    color: green;
+}
+
+.orange-color {
+    color: orange;
+}
+
+.font-color {
+    color: #9d9d9d;
+}
+
+.main-color {
+    background-color: #222 !important;
+}
+
+.buttons-padding {
+    padding-left: 10px;
+}
+
+.not-displaying {
+    display: none !important;
+}
